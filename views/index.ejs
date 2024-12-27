@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Trends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0084b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #005f77;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Twitter Trends</h1>
+    <form action="/run-script" method="POST">
+        <button type="submit">Run Script</button>
+    </form>
+
+    <% if (result) { %>
+        <p>These are the most happening topics as of <%= result.timestamp %>:</p>
+        <ul>
+            <% result.trends.forEach(t => { %>
+                <li><strong><%= t.trendName %>:</strong> <%= t.topic %></li>
+            <% }); %>
+        </ul>
+        <p>The IP address used for this query was <%= result.ipAddress %>.</p>
+
+        <form action="/run-script" method="POST">
+            <button type="submit">Run Script Again</button>
+        </form>
+    <% } else { %>
+        <p>No trends fetched yet. Run the script to get started.</p>
+    <% } %>
+</body>
+</html>
