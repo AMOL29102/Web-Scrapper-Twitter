@@ -207,11 +207,14 @@ async function runPuppeteer() {
 }
 
 // Export for Vercel serverless function
-module.exports = async (req, res) => {
-    try {
-        const result = await runPuppeteer();
-        res.status(200).json(result);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
+// module.exports = async (req, res) => {
+//     try {
+//         const result = await runPuppeteer();
+//         res.status(200).json(result);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// };
+
+
+module.exports = runPuppeteer;
