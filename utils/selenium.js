@@ -120,7 +120,7 @@ async function runPuppeteer() {
     try {
         console.log('Launching Puppeteer...');
         browser = await puppeteer.launch({
-            headless: true,
+            headless: false,
             executablePath: await chromium.executablePath,
             args: chromium.args,
             defaultViewport: chromium.defaultViewport,
