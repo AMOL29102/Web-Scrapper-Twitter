@@ -109,7 +109,6 @@
 // }
 
 // module.exports = runPuppeteer;
-
 require('dotenv').config();
 const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
@@ -120,10 +119,10 @@ async function runPuppeteer() {
     try {
         console.log('Launching Puppeteer...');
         browser = await puppeteer.launch({
-            headless: false,
-            executablePath: await chromium.executablePath,
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
+            headless: true,  // Use headless mode for serverless environments
+            executablePath: await chromium.executablePath,  // Use the executablePath from chrome-aws-lambda
+            args: chromium.args,  // Use arguments compatible with serverless environments
+            defaultViewport: chromium.defaultViewport,  // Use the default viewport size from chrome-aws-lambda
         });
 
         const page = await browser.newPage();
@@ -197,7 +196,7 @@ async function runPuppeteer() {
         };
     } catch (error) {
         console.error('Error during Puppeteer execution:', error);
-        throw new Error('Puppeteer script failed.');
+        throw new Error('Puppeteer script failed. '+error.message);
     } finally {
         if (browser) {
             console.log('Closing Puppeteer browser...');
@@ -207,14 +206,6 @@ async function runPuppeteer() {
 }
 
 // Export for Vercel serverless function
-// module.exports = async (req, res) => {
-//     try {
-//         const result = await runPuppeteer();
-//         res.status(200).json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// };
-
+// module.exports = runPuppeteer;
 
 module.exports = runPuppeteer;
