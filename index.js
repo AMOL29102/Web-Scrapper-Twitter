@@ -29,17 +29,31 @@
 
 const express = require('express');
 const path = require('path');
-const runPuppeteer = require('./utils/selenium'); // Update the path as per your project structure
-const trendsRoute = require('./routes/trends');
+const trendsRoute = require('./routes/trends'); // Update path as necessary
+const PORT = 3000;
+
 const app = express();
 
+// Set the view engine to EJS
 app.set('view engine', 'ejs');
+
+// Use absolute path for the views directory
 app.set('views', path.join(__dirname, 'views'));
+
+// Middleware for parsing URL-encoded data
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/',trendsRoute)
+// Serve static files (e.g., CSS, JS, images) from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Define application routes
+app.use('/', trendsRoute);
+
+// Export the app for Vercel
+module.exports = app;
 
 
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
-});
+// Start the server
+// app.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`);
+// });

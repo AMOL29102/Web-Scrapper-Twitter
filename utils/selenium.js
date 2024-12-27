@@ -18,7 +18,7 @@ async function runPuppeteer() {
 
         // Navigate to X (Twitter) login page
         console.log('Navigating to X (Twitter) login page...');
-        await page.goto('https://x.com/i/flow/login', { waitUntil: 'networkidle2' });
+        await page.goto('https://x.com/i/flow/login', { timeout: 600000 });
 
         // Enter username or email
         console.log('Entering username...');
