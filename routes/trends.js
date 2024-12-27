@@ -18,7 +18,7 @@ router.post('/run-script', async (req, res) => {
         }
     } catch (err) {
         console.error('Error in route:', err);
-        res.status(500).send('Internal Server Error: ' + err.message);
+        res.status(500).send(err.message);
     }
 });
 
