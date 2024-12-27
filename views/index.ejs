@@ -52,7 +52,7 @@
 </head>
 <body>
     <h1>Twitter Trends</h1>
-    <form action="http://localhost:3000/run-script" method="POST">
+    <form action="/run-script" method="POST">
         <button type="submit">Run Script</button>
     </form>
 
@@ -65,7 +65,7 @@
         </ul>
         <p>The IP address used for this query was <%= result.ipAddress %>.</p>
 
-        <form action="http://localhost:3000/run-script" method="POST">
+        <form action="/run-script" method="POST">
             <button type="submit">Run Script Again</button>
         </form>
     <% } else { %>
