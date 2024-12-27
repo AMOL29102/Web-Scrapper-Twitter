@@ -50,10 +50,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', trendsRoute);
 
 // Export the app for Vercel
-module.exports = app;
+// module.exports = app;
 
 
 // Start the server
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
